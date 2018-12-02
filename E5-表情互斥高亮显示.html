@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高亮显示</title>
+    <style>
+        html,
+        body,
+        div,
+        table,
+        tr,
+        td {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #ccc;
+            width: 400px;
+        }
+
+        td {
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script src="./lib/jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>用户名</td>
+            <td>年 龄</td>
+            <td>编 号</td>
+        </tr>
+        <tr>
+            <td>a</td>
+            <td>11</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>b</td>
+            <td>22</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>c</td>
+            <td>33</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>d</td>
+            <td>44</td>
+            <td>4</td>
+        </tr>
+
+    </table>
+
+    <script>
+    $(function(){
+        //  jQuery可以通过原型上的click方法进行绑定点击事件
+        //  $("tr");    //选择到了所有的tr
+        $("tr").click(function(e){  //存在隐式迭代
+            //  点击了当前，那么让当前行  背景高亮，让其他的 兄弟节点背景不高亮
+            //  jQuery的事件处理程序中，this依然指向板顶事件dom对象
+            $(this).css( "backgroundColor","#ccc" );
+            //  拿到多个兄弟节点，饮食迭代全部设置背景为白色
+            $(this).siblings("tr").css( "backgroundColor","#fff" );
+        });
+    });
+    
+    </script>
+</body>
+
+</html>

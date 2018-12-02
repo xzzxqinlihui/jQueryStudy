@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解除绑定事件</title>
+    <script src="./lib/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <input type="button" value="解除绑定" id="btn">
+    <input type="button" value="解除命名空间事件" id="btnOffNameSpace">
+    <ul class="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script>
+    $(".list li").on( "click",function(e){
+        console.log( this.innerHTML );
+    } );
+    //  事件类型后面加.demo 表示当前时间所属demo命名空间
+    $(".list li").on( "click.demo",function(e){
+        console.log( this.innerHTML + "==" );
+    } );
+    
+    $(".list li").on( "click.demo",function(e){
+        console.log( this.innerHTML + "===");
+    } );
+
+
+    $("#btn").on( "click",function(e){
+        //  解除on的click事件
+        $( ".list li" ).off( "click" );
+        //  解除所有事件
+        $(".list li").off();
+    } );
+    
+    //  解绑命名空间事件
+    $("#btnOffNameSpace").on( "click",function(e){
+        $(".list li").off( "click.demo" );
+    } );
+    </script>
+</body>
+</html>

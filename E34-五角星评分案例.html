@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>评分空间☆★</title>
+    <style>
+        html,body,div,li,ul {
+            padding: 0;
+            margin: 0;
+        }
+        ul,ol {
+            list-style: none;
+        }
+        .list li {
+            float: left;
+            width: 20px;
+            font-size: 20px;
+        }
+       
+    </style>
+    <script src="./lib/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <ul class="list">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+
+    <script>
+        $(function(){
+            //  第一个效果：当鼠标移入五角星的时候，之前的五角星和自己都编程实心的五角星
+            $(".list li").hover(function(e){
+            //  鼠标移入：当鼠标移入，五角星时候，之前五角星和自己都编程实心的五角星
+            $(this).text("★").prevAll().text("★").end().nextAll().text("☆");  //..隐式迭代
+            },function(e){
+            //  鼠标移出：把自己编程空心五角星，而且后面的也变成空心五角星
+            $(this).text("☆").nextAll().text("☆").end().prevAll().text("☆");
+            }).on("click",function(e){
+            //  点击之后  记录当前点击的是谁  
+                $(this).addClass("cur").siblings().removeClass("cur");
+            });
+
+            $(".list li").on("mouseleave",function(e){
+                //  那到 当前cur类的li标签
+                $(".list li.cur").text("★").prevAll().text("★").end().nextAll().text("☆");
+            });
+        });
+    </script>
+</body>
+</html>

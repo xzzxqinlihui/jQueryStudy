@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery样式处理</title>
+    <script src="./lib/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <script>
+    $(function(){
+        //  css  jQuery内部做了兼容过处理，即使设置了css属性值会把最总结果返回
+        $( "p:first" ).css( "color","red" );
+        console.log( $( "p:first" ).css( "color" ) );
+
+        $("p:last").css({
+            color:"yellow",
+            "font-size":"18px",
+            "background-color":"blue",
+            "font-weight":"bold"
+        });
+
+
+        //  动态创建标签元素
+        //  复习jQuery构造函数的用法
+        //  1   选择器          返回jQuery对象
+        //  2   dom对象     →   jQuery对象
+        //  3   回调函数       作为网页加载完成的入口
+        //  4   接受一个html的字符串        创建新的dom的包装对象
+        $( "<div><span>123</span></div>" ).appendTo( document.body );
+
+        var $div = $( "<div><span>456</span></div>" );
+        $( document.body ).append( $div );
+    });
+    
+    </script>
+</body>
+</html>

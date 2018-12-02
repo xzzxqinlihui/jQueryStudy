@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态创建表格案例</title>
+    <script src="./lib/jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <table class="list">
+        <thead>
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>年龄</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>老马</td>
+                <td>121@232</td>
+                <td>178</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var data = [
+            {
+                name: "laoma11",
+                email: "1231@121",
+                age: 121
+            },
+            {
+                name: "laoma12",
+                email: "1231@121",
+                age: 122
+            },
+            {
+                name: "laoma13",
+                email: "1231@121",
+                age: 123
+            },
+            {
+                name: "laoma14",
+                email: "1231@121",
+                age: 124
+            },
+            {
+                name: "laoma15",
+                email: "1231@121",
+                age: 125
+            },
+        ];
+
+        $(function () {
+            var tempStrArray = [];
+            for (var i = 0; i < data.length; i++) {
+                var tempStr = "";
+                tempStr += "<tr>"
+                   tempStr += " <td>" + data[i].name + "</td>"
+                   tempStr += " <td>" + data[i].email + "</td>"
+                   tempStr += " <td>" + data[i].age + "</td>"
+                tempStr += "</tr>"
+                //  把拼接的字符串放到数组中
+                tempStrArray.push( tempStr );
+            }
+                //  设置元素的内部标签字符串
+            $(".list tbody").html( tempStrArray.join("") );
+                //  读取标签内部的html字符串
+            console.log( $(".list tbody").html() );
+
+            //  第三种用法
+            $( ".list tbody" ).html( function( index, oldhtml ){
+
+            } );
+        });
+    </script>
+</body>
+
+</html>

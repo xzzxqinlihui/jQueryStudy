@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery的属性和方法</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script src="./lib/jquery-1.12.4.js"></script>
+    <script>
+    //  jQuery的构造函数方法
+    //  jQuery  构造函数的几个应用
+    //  1 元素选择  利用选择器
+    //  2 dom对象转换为jQuery包装对象  dom->jQuery
+    //  3 动态创建dom标签的jQuery包装对象
+    //  4 入口函数
+
+    //  each    方法
+    jQuery.each( [1,"abc",2,3],function(index,value){
+        console.log( index,value );
+    } );
+
+    $(function(){
+        //  页面加载完之后执行
+        jQuery.each($("li"),function(index,value){
+            console.log(index,value);
+        });
+
+        //  jQuery的构造函数的map方法
+        var newArrJQuery = jQuery.map(["a","b","c","d"],function(value,index){
+            console.log( value,index );
+            return value + index;
+        });
+        console.log( newArrJQuery );
+
+        // 过滤 默认false  返回 满足条件的
+        var n2 = $.grep( [0,1,2],function(n,i){
+            return n > 0;
+        } );
+        console.log( n2 );
+    });
+
+
+
+    //  js  ec5中提供map方法  对数组中的元素进行处理并返回新数组
+    var arr = ["a","b","c","d"];
+    var newArr = arr.map( function( value,index ){
+        return value + index;
+    } );
+    console.log( newArr );
+
+    console.log( "==============================" );
+
+    //  jQuery 构造函数的extend方法
+    //  浅拷贝 子对象只复制子对象的地址，具体内部不进行复制  
+    // var target = {name:"laoma"};
+    // var obj1 = {
+    //     age:18,
+    //     cellphone:"123324324",
+    //     mail:"123142342@3242.com"
+    //     };
+    // var p1 = {
+    //     k:123,
+    //     m:"abc"
+    // };
+    // var obj2 = {
+    //     run:function(){
+    //         console.log("run1");
+    //     },
+    //     p:p1
+    // };
+
+    // var newObj = jQuery.extend( target,obj1,obj2 );
+    // console.log( newObj,target );
+    // console.log( newObj === target );
+
+    // console.log( newObj.p == p1 );   //true
+    // console.log(newObj.p.k);    //  123
+    // p1.k = 444;                 //  newObj.p.k
+    // console.log( newObj.p.k );  //  444
+
+
+    //  深拷贝
+    var target = {name:"laoma"};
+    var obj1 = {
+        age:18,
+        cellphone:"123324324",
+        mail:"123142342@3242.com"
+        };
+    var p1 = {
+        k:123,
+        m:"abc"
+    };
+    var obj2 = {
+        run:function(){
+            console.log("run1");
+        },
+        p:p1
+    };
+
+    var newObj = jQuery.extend( true,target,obj1,obj2 );
+    console.log( newObj,target );
+    console.log( newObj === target );
+
+    console.log( newObj.p == p1 );  //false
+    console.log(newObj.p.k);    //  123
+    p1.k = 444;                 //  newObj.p.k
+    console.log( "newObj.p.k",newObj.p.k );  //  123
+    console.log( "p1.k",p1.k );        //  444
+    </script>
+</body>
+</html>

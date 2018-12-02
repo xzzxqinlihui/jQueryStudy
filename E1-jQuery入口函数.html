@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery入口函数</title>
+</head>
+<body>
+    
+    <input type="button" value="123" id="btn">
+    <script src='./lib/jquery-1.12.4.js'></script>
+    <script>
+    
+    // DOM方式
+    (function(){
+        window.onload = function(){
+            console.log( "load" );
+            var btn = document.getElementById("btn");
+            btn.onclick = function(){
+                alert( this.value );
+            };
+        };    
+    })();
+    
+    //  jquery 方式  
+    $(function(){
+        console.log( "ready1" );
+    });
+
+    $(document).ready(function(){
+        console.log( "ready2" );
+    });
+    </script>
+</body>
+</html>

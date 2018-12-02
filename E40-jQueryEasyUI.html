@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQueryEasyUI</title>
+    <script src="./lib/jquery-1.12.4.js"></script>
+    <script src="./lib/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="./lib/jquery-easyui-1.5.3/themes/default/easyui.css">
+    <link rel="stylesheet" href="./lib/jquery-easyui-1.5.3/themes/icon.css">
+</head>
+
+<body>
+    <h2>Basic Tabs</h2>
+    <p>Click tab strip to swap tab panel content.</p>
+    <div style="margin:20px 0 10px 0;"></div>
+    <div class="easyui-tabs" style="width:700px;height:250px">
+        <div title="About" style="padding:10px">
+            <p style="font-size:14px">jQuery EasyUI framework helps you build your web pages easily.</p>
+            <ul>
+                <li>easyui is a collection of user-interface plugin based on jQuery.</li>
+                <li>easyui provides essential functionality for building modem, interactive, javascript applications.</li>
+                <li>using easyui you don't need to write many javascript code, you usually defines user-interface by
+                    writing some HTML markup.</li>
+                <li>complete framework for HTML5 web page.</li>
+                <li>easyui save your time and scales while developing your products.</li>
+                <li>easyui is very easy but powerful.</li>
+            </ul>
+        </div>
+        <div title="My Documents" style="padding:10px">
+            <ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true"></ul>
+        </div>
+        <div title="Help" data-options="iconCls:'icon-help',closable:true" style="padding:10px">
+            This is the help content.
+            <input type="button" value="按钮" id="btn">
+            <div id="dlg" class="easyui-dialog" title="Basic Dialog" data-options="iconCls:'icon-save' ,closed:true,width:400,height:300"  style="width:400px;height:200px;padding:10px">
+                The dialog content.
+            </div>
+        </div>
+    </div>
+    <script>
+    
+    $(function(){
+        $("#btn").on( "click",function(e){
+            $(".easyui-dialog").dialog({
+                closed:false,
+                modal:true,
+                collapsible:true,
+                minimizable:true,
+                resizable:true,
+                tools:[{
+                    iconCls:"icon-add",
+                    handler:function(){alert("new")}
+                },{
+                    iconCls:"icon-save",
+                    handler:function(){alert("save")}
+                }],
+                buttons:[{
+                    text:"确定",
+                    iconCls:"icon-ok",
+                    handler:function(e){
+                        console.log("ok");
+                        $(".easyui-dialog").dialog("close");
+                    }
+                }]
+            });
+        } );
+    });
+    </script>
+</body>
+
+</html>
